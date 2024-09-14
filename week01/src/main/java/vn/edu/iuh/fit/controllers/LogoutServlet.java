@@ -12,7 +12,7 @@ import vn.edu.iuh.fit.utils.JPAUtil;
 import java.io.IOException;
 
 @WebServlet(name = "LogoutController", value = "/logout")
-public class LogouServlet extends HttpServlet {
+public class LogoutServlet extends HttpServlet {
     private AccountService accountService;
     private EntityManager em;
 
@@ -28,14 +28,12 @@ public class LogouServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String sessionId = req.getSession().getId();
         System.out.println("check session" + sessionId);
-        // Gọi phương thức logout từ AccountServiceImpl
+
         boolean rs = accountService.logout(sessionId);
 
-        // Xóa dữ liệu tài khoản khỏi session
         HttpSession session = req.getSession();
         session.removeAttribute("accountData");
 
-        // Vô hiệu hóa và xóa cookie nếu có
         Cookie[] cookies = req.getCookies();
         if (cookies != null) {
             for (Cookie cookie : cookies) {
@@ -48,11 +46,10 @@ public class LogouServlet extends HttpServlet {
             }
         }
 
-        // Chuyển hướng người dùng đến trang login hoặc trang khác
         if (rs) {
             resp.sendRedirect(req.getContextPath() + "/login.jsp");
         } else {
-            resp.sendRedirect(req.getContextPath() + "/login.jsp?error=Logout%20failed");
+            resp.sendRedirect(req.getContextPath() + "/login.jsp");
         }
     }
 

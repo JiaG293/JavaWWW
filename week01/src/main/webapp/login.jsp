@@ -1,4 +1,11 @@
-<!DOCTYPE html>
+<%--
+  Created by IntelliJ IDEA.
+  User: JiaG
+  Date: 13/09/2024
+  Time: 3:17 PM
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
@@ -95,8 +102,8 @@
 
 <script>
     const testFill = () => {
-        document.getElementById('username').value = 'test';
-        document.getElementById('password').value = 'test';
+        document.getElementById('username').value = 'teo';
+        document.getElementById('password').value = '123';
     }
 
     document.getElementById('showPassword').addEventListener('change', function () {

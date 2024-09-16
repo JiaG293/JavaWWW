@@ -1,4 +1,3 @@
-/*
 package vn.edu.iuh.fit.controllers;
 
 import jakarta.servlet.RequestDispatcher;
@@ -63,4 +62,3 @@ public class ControlServlet extends HttpServlet {
     }
 }
 
-*/

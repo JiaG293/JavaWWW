@@ -15,7 +15,7 @@ import vn.edu.iuh.fit.utils.JPAUtil;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "ManagementServlet", value = "/")
+@WebServlet(name = "ManagementServlet", value = "/manage")
 public class ManagementServlet extends HttpServlet {
 
     private AccountService accountService;
@@ -38,13 +38,14 @@ public class ManagementServlet extends HttpServlet {
         if (action != null) {
             switch (action) {
                 case "getlistAccountOfRole_admin":
-                    List<AccountGrantDTO> accounts = accountService.getListAccountOfRole("admin");
-                    System.out.println("sfsdlfk:" + accounts.size() );
-                    req.setAttribute("listAccountOfRole", accounts);
+                    List<AccountGrantDTO> accountsAdmin = accountService.getListAccountOfRole("admin");
+                    req.setAttribute("listAccountOfRole", accountsAdmin);
                     req.getRequestDispatcher("/dashboard.jsp").forward(req, resp);
                     break;
                 case "getlistAccountOfRole_user":
-                    resp.sendRedirect("/RegisterServlet");
+                    List<AccountGrantDTO> accountsUser= accountService.getListAccountOfRole("user");
+                    req.setAttribute("listAccountOfRole", accountsUser);
+                    req.getRequestDispatcher("/dashboard.jsp").forward(req, resp);
                     break;
                 case "logout":
                     resp.sendRedirect("/LogoutServlet");

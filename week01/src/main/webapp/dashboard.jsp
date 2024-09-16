@@ -88,11 +88,11 @@
             List Account of Role
         </div>
         <div class="mt-3 d-flex justify-content-center">
-            <form method="get" class="mx-2">
+            <form action="manage" method="get" class="mx-2">
                 <input type="hidden" name="action" value="getlistAccountOfRole_admin">
                 <button type="submit" class="btn btn-outline-secondary">Admin</button>
             </form>
-            <form  method="get" class="mx-2">
+            <form  action="manage"  method="get" class="mx-2">
                 <input type="hidden" name="action" value="getlistAccountOfRole_user">
                 <button type="submit" class="btn btn-outline-secondary">User</button>
             </form>
@@ -113,15 +113,21 @@
             <%
                 List<AccountGrantDTO> listAccountOfRole = (List<AccountGrantDTO>) request.getAttribute("listAccountOfRole");
                 if (listAccountOfRole != null) {
+                    int index = 1;
                     for (AccountGrantDTO acc : listAccountOfRole) {
             %>
             <tr>
+                <th scope="col"><%= index %></th>
                 <td><%= acc.getAccount().getAccountId() %></td>
-                <td><%= acc.getRole().getRoleId() %></td>
+                <td><%= acc.getAccount().getFullName() %></td>
+                <td><%= acc.getAccount().getEmail() %></td>
+                <td><%= acc.getAccount().getPhone() %></td>
                 <td><%= acc.getGrant() %></td>
+                <td><%= acc.getAccount().getStatus() %></td>
             </tr>
             <%
-                }
+                    index++;
+                    }
             } else {
             %>
             <tr>
